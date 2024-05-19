@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Deletion of a hypermedia pagination element    
+Deletion of a hypermedia pagination element
 """
 
 import csv
 import math
-from typing import Dict, List, Optional 
+from typing import Dict, List, Optional
 
 
 class Server:
