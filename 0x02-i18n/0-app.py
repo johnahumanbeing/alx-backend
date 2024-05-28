@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-""" Flask application module
-"""
+""" Flask application module """
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, format_datetime, localeselector
+from flask_babel import Babel, format_datetime
 from typing import Dict, Optional
 from pytz import exceptions as pytz_exceptions, timezone
 
 
 class Config(object):
-    """ Flask app configuration class
-    """
+    """ Flask app configuration class """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -37,7 +35,7 @@ def get_locale() -> str:
     if locale in app.config["LANGUAGES"]:
         return locale
 
-    # user not logged in
+    # when user is not logged in
     if not g.user:
         return request.accept_languages.best_match(Config.LANGUAGES)
 
@@ -93,12 +91,10 @@ def before_request() -> None:
 
 @app.route("/")
 def home():
-    """ Home route
-    """
+    """ Home route """
     g.time = format_datetime()
     return render_template("index.html")
 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-''
